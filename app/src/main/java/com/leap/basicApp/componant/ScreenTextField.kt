@@ -23,6 +23,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.AssistChipDefaults
 import androidx.compose.material3.Badge
@@ -70,16 +72,26 @@ import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.sp
 import com.leap.basicApp.ui.font.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenTextField() {
-    var textValue by remember { mutableStateOf("") }
+    var textValue1 by remember { mutableStateOf("") }
+    var textValue2 by remember { mutableStateOf("") }
+    val keyboardController = LocalSoftwareKeyboardController.current
     Scaffold(
-        modifier = Modifier.navigationBarsPadding(),
+        modifier = Modifier.navigationBarsPadding()
+            .clickable(
+                onClick = {
+                    keyboardController?.hide()
+                }
+            ),
         topBar = {
             TopAppBar(
                 navigationIcon = {
@@ -123,10 +135,10 @@ fun ScreenTextField() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             TextField(
-                value = textValue,
+                value = textValue1,
                 onValueChange = {
                     println("=====> $it")
-                    textValue = it
+                    textValue1 = it
                 },
                 placeholder = {
                     Text("Enter Username ")
@@ -145,7 +157,26 @@ fun ScreenTextField() {
                         painter = painterResource(R.drawable.ic_clear),
                         contentDescription = ""
                     )
-                }
+                },
+                enabled = true,
+                readOnly = false,
+                singleLine = false,
+                maxLines = 2,  // this max 2 lines only
+                isError = false,
+                supportingText = {
+                    Text(
+                        "Please Enter Username....."
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password,
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        keyboardController?.hide()
+                    }
+                )
 
             )
         }
