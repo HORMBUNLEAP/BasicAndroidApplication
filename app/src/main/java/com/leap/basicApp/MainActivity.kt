@@ -15,6 +15,7 @@ import com.leap.basicApp.componant.ScreenBottomSheet
 import com.leap.basicApp.componant.ScreenCheckBox
 import com.leap.basicApp.componant.ScreenFillButton
 import com.leap.basicApp.componant.ScreenIconButton
+import com.leap.basicApp.componant.ScreenLoadingAndProgress
 import com.leap.basicApp.screen.ScreenHorizontalPager
 import com.leap.basicApp.screen.ScreenLazyHorizontalGird
 import com.leap.basicApp.screen.ScreenLazyRowPreviewP2
@@ -33,8 +34,10 @@ class MainActivity : ComponentActivity() {
 //            ScreenIconButton()
 //            ScreenFillButton()
 //            ScreenCheckBox()
-            ScreenBottomSheet()
+//            ScreenBottomSheet()
+            ScreenLoadingAndProgress()
         }
+
 
     }
 }
