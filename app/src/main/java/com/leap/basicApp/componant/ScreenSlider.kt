@@ -125,8 +125,8 @@ fun ScreenSlider() {
 
             Slider(
                 modifier = Modifier
-                    .padding(all = 16.dp)
-                    .rotate(-90f),
+                    .padding(all = 16.dp),
+                    //.rotate(-90f), // for rotating
 
                 value = sliderPosition1,
                 onValueChange = {
