@@ -22,12 +22,18 @@ import com.leap.basicApp.screen.ScreenLazyHorizontalGird
 import com.leap.basicApp.screen.ScreenLazyRowPreviewP2
 import com.leap.basicApp.screen.ScreenLazyVerticalGrid
 import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
+import com.leap.basicApp.util.LoadingContent
+import com.leap.basicApp.util.LoadingUtil
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            if (LoadingUtil.isLoading.value) {
+                LoadingContent()
+            }
             //ScreenLazyRowPreviewP2()
 //            ScreenLazyVerticalGrid()
 //            ScreenLazyHorizontalGird()
@@ -37,7 +43,7 @@ class MainActivity : ComponentActivity() {
 //            ScreenCheckBox()
 //            ScreenBottomSheet()
 //            ScreenLoadingAndProgress()
-            ScreenToolTip()
+//            ScreenToolTip()
 
         }
 
