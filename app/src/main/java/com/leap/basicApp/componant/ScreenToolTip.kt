@@ -21,7 +21,6 @@ import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -34,8 +33,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.leap.basicApp.R
-import com.leap.basicApp.ToolTipViewModel
-import com.leap.basicApp.model.ReceiverAccountModel
+import com.leap.basicApp.modelf.ReceiverAccountModel
+import com.leap.basicApp.modelf.ToolTipViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

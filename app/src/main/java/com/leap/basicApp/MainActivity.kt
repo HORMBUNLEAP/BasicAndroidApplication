@@ -17,11 +17,13 @@ import com.leap.basicApp.componant.ScreenFillButton
 import com.leap.basicApp.componant.ScreenIconButton
 import com.leap.basicApp.componant.ScreenLoadingAndProgress
 import com.leap.basicApp.componant.ScreenToolTip
+import com.leap.basicApp.feature.home.ScreenHome
 import com.leap.basicApp.screen.ScreenHorizontalPager
 import com.leap.basicApp.screen.ScreenLazyHorizontalGird
 import com.leap.basicApp.screen.ScreenLazyRowPreviewP2
 import com.leap.basicApp.screen.ScreenLazyVerticalGrid
 import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
+import com.leap.basicApp.util.AppNavigation
 import com.leap.basicApp.util.LoadingContent
 import com.leap.basicApp.util.LoadingUtil
 
@@ -30,10 +32,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-            if (LoadingUtil.isLoading.value) {
-                LoadingContent()
-            }
+            AppNavigation()
+//            if (LoadingUtil.isLoading.value) {
+//                LoadingContent()
+//            }
             //ScreenLazyRowPreviewP2()
 //            ScreenLazyVerticalGrid()
 //            ScreenLazyHorizontalGird()
@@ -44,8 +46,10 @@ class MainActivity : ComponentActivity() {
 //            ScreenBottomSheet()
 //            ScreenLoadingAndProgress()
 //            ScreenToolTip()
+//            ScreenHome()
 
         }
+
 
 
     }

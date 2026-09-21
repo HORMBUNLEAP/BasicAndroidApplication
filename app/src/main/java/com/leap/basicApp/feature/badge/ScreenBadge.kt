@@ -1,4 +1,4 @@
-package com.leap.basicApp.componant
+package com.leap.basicApp.feature.badge
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.leap.basicApp.R
-import com.leap.basicApp.model.BadgeViewModel
 import com.leap.basicApp.model.BaseUiState
 import com.leap.basicApp.util.LoadingUtil
 
