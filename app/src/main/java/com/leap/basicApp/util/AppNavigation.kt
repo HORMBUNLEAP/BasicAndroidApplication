@@ -27,7 +27,9 @@ fun AppNavigation(){
                 entryProvider = { key->
                         when(key){
                                 is HomeScreen -> NavEntry(key){
-                                        ScreenHome()
+                                        ScreenHome(
+
+                                        )
                                 }
                                 is BadgeScreen -> NavEntry(key){
                                         ScreenBadge()
