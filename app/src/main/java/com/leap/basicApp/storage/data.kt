@@ -1,4 +1,4 @@
-package com.leap.basicApp.storage
+ package com.leap.basicApp.storage
 
 import com.leap.basicApp.commom.AccountTypeCode
 import com.leap.basicApp.commom.CardTypeCode

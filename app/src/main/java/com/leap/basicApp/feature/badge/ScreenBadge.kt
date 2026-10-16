@@ -35,7 +35,8 @@ import com.leap.basicApp.util.LoadingUtil
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenBadge(
-    badgeViewModel: BadgeViewModel = BadgeViewModel()
+    badgeViewModel: BadgeViewModel = BadgeViewModel(),
+    onBack: () -> Unit = {}
 ){
 
     val  messageUiState by badgeViewModel.messageUiState.collectAsStateWithLifecycle()
@@ -69,6 +70,14 @@ fun ScreenBadge(
         modifier = Modifier.navigationBarsPadding(),
         topBar = {
             LargeTopAppBar(
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_arrow_back),
+                            contentDescription = "Back"
+                        )
+                    }
+                },
                 title = {
                     Text(
                         text = "This is Badge"

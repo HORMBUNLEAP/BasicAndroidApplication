@@ -28,11 +28,17 @@ fun AppNavigation(){
                         when(key){
                                 is HomeScreen -> NavEntry(key){
                                         ScreenHome(
-
+                                            onClickItem = { route ->
+                                                backStack.add(route)
+                                            }
                                         )
                                 }
                                 is BadgeScreen -> NavEntry(key){
-                                        ScreenBadge()
+                                        ScreenBadge(
+                                            onBack = {
+                                                backStack.removeLastOrNull()
+                                            }
+                                        )
                                 }
                                 else -> NavEntry(Unit) {
                                         Text("Unknown Route")
