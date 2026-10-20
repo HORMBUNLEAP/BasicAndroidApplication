@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.leap.basicApp.model.BaseUiState
 import com.leap.basicApp.model.ComponentModel
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 class HomeVM(
     private val homeRepository: HomeRepository = HomeRepository()
 ): ViewModel() {
-    private var _componentList : MutableStateFlow<BaseUiState<List<ComponentModel>>> =
+    private var _componentList : MutableStateFlow<BaseUiState<List<ComponentModel>>?> =
         MutableStateFlow(BaseUiState.Loading)
     var componentList = _componentList.asStateFlow()
     fun getComponentList(){
@@ -26,5 +27,9 @@ class HomeVM(
     }
     init {
         getComponentList()
+    }
+    fun onDispose(){
+        viewModelScope.cancel()
+        _componentList.value = BaseUiState.None
     }
 }

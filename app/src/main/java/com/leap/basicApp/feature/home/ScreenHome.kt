@@ -21,11 +21,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.leap.basicApp.R
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.leap.basicApp.model.BaseUiState
 import com.leap.basicApp.util.LoadingUtil
@@ -37,6 +42,7 @@ fun ScreenHome(
     homeVM: HomeVM = HomeVM(),
     onClickItem: (Any) -> Unit = {}
 ){
+    val lifecycleOwner = LocalLifecycleOwner.current
     val componentList by homeVM.componentList.collectAsStateWithLifecycle()
 
     LaunchedEffect(componentList) {
@@ -47,6 +53,47 @@ fun ScreenHome(
             else -> {
 
             }
+        }
+    }
+    LaunchedEffect(Unit) {
+
+    }
+    DisposableEffect(Unit) {
+        onDispose {
+            println("===== onDispose =====")
+            homeVM.onDispose()
+        }
+    }
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver{_, event ->
+            when(event){
+                Lifecycle.Event.ON_CREATE ->{
+                    println("---> ON_CREATE")
+                }
+
+                Lifecycle.Event.ON_START ->{
+                    println("---> ON_START")
+                }
+                Lifecycle.Event.ON_DESTROY->{
+                    println("---> ON_DESTROY")
+                }
+                Lifecycle.Event.ON_PAUSE->{
+                    println("---> ON_PAUSE")
+                }
+
+                Lifecycle.Event.ON_RESUME ->{
+                    println("---> ON_RESUME")
+                }
+                else -> {
+
+                }
+            }
+        }
+        // Subscript
+        lifecycleOwner.lifecycle.addObserver(observer)
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
         }
     }
 

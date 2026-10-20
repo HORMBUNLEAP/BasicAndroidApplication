@@ -30,28 +30,30 @@ import com.leap.basicApp.util.LoadingUtil
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("====> MainActivity onCreate")
         enableEdgeToEdge()
         setContent {
             AppNavigation()
-//            if (LoadingUtil.isLoading.value) {
-//                LoadingContent()
-//            }
-            //ScreenLazyRowPreviewP2()
-//            ScreenLazyVerticalGrid()
-//            ScreenLazyHorizontalGird()
-//            ScreenHorizontalPager()
-//            ScreenIconButton()
-//            ScreenFillButton()
-//            ScreenCheckBox()
-//            ScreenBottomSheet()
-//            ScreenLoadingAndProgress()
-//            ScreenToolTip()
-//            ScreenHome()
+
 
         }
 
+    }
 
+    override fun onStart() {
+        super.onStart()
+    }
 
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
 
