@@ -7,13 +7,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
@@ -178,7 +179,7 @@ fun HomeScreen(){
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize()
-//                .verticalScroll(state = scrollState)
+                .verticalScroll(state = scrollState)
                 .background(color = colorResource(R.color.smoke_white)),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -189,9 +190,7 @@ fun HomeScreen(){
                     .fillMaxWidth()
                     .height(60.dp)
                     .padding(16.dp, 5.dp),
-
-
-                ) {
+            ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -253,7 +252,7 @@ fun HomeScreen(){
                         shape = RoundedCornerShape(20.dp)
                     ),
 
-            ){
+                ) {
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -318,43 +317,43 @@ fun HomeScreen(){
                     ) {
                         HorizontalDivider(thickness = 2.dp)
                     }
-                        Column(
-                            modifier = Modifier.weight(1f)
-                        ) {
-                            Row(modifier = Modifier.fillMaxWidth()) {
-                                Text(
-                                    text = "KHR",
-                                    fontSize = 14.sp,
-                                    color = Color.White
-                                )
-                                Spacer(modifier = Modifier.width(5.dp))
-                                Text(".")
-                                Spacer(modifier = Modifier.width(5.dp))
-                                Text(
-                                    modifier = Modifier.weight(1f),
-                                    text = "រៀល *** 1190",
-                                    color = Color.White
-                                )
-                            }
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Row(modifier = Modifier.fillMaxWidth()) {
                             Text(
-                                text = "៛25,600,000",
-                                color = Color.White,
-                                fontWeight = FontWeight.Bold,
+                                text = "KHR",
+                                fontSize = 14.sp,
+                                color = Color.White
                             )
-
-                        }
-                        Button(
-                            onClick = {},
-                            contentPadding = PaddingValues(
-                                horizontal = 12.dp,
-                                vertical = 3.dp
-                            )
-                        ) {
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(".")
+                            Spacer(modifier = Modifier.width(5.dp))
                             Text(
-
-                                text = "All Accounts"
+                                modifier = Modifier.weight(1f),
+                                text = "រៀល *** 1190",
+                                color = Color.White
                             )
                         }
+                        Text(
+                            text = "៛25,600,000",
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold,
+                        )
+
+                    }
+                    Button(
+                        onClick = {},
+                        contentPadding = PaddingValues(
+                            horizontal = 12.dp,
+                            vertical = 3.dp
+                        )
+                    ) {
+                        Text(
+
+                            text = "All Accounts"
+                        )
+                    }
 
                 }
             }
@@ -404,7 +403,7 @@ fun HomeScreen(){
                         ) {
 
                             for (item in rowItems) {
-                                
+
                                 Column(
                                     modifier = Modifier.weight(1f),
                                     verticalArrangement = Arrangement.Center,
@@ -478,66 +477,60 @@ fun HomeScreen(){
                 )
             }
 
-            LazyColumn(
-                modifier = Modifier.padding(0.dp)
+            // Removed redundant LazyColumn wrapper that caused IllegalStateException due to nested vertical scrolling
+            LazyRow(
+                modifier = Modifier,
             ) {
-                item {
-                    LazyRow (
-                        modifier = Modifier,
+                items(promotion.size) { index ->
+                    Box(
+                        modifier = Modifier
+                            .width(280.dp)
+                            .height(130.dp)
+                            .background(
+                                color = colorResource(id = promotion[index].colorRes),
+                                shape = RoundedCornerShape(16.dp)
+                            ),
                     ) {
-                        items(promotion.size){
-                                index->
-                            Box(
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 0.dp),
+                        ) {
+                            Text(
+                                text = promotion[index].label,
+                                color = Color.White,
+                                fontSize = 18.sp,
+                                fontWeight = FontWeight.Bold,
                                 modifier = Modifier
-                                    .width(280.dp)
-                                    .height(130.dp)
-                                    .background(
-                                        color = colorResource(id = promotion[index].colorRes),
-                                        shape = RoundedCornerShape(16.dp)
-                                    ),
-                            ){
-                                Column(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .padding(bottom = 0.dp),
-                                ){
-                                    Text(
-                                        text = promotion[index].label,
-                                        color = Color.White,
-                                        fontSize = 18.sp,
-                                        fontWeight = FontWeight.Bold,
-                                        modifier = Modifier
-                                            .padding(16.dp)
-                                            .weight(1f),
-                                    )
-                                    Spacer(modifier = Modifier.height(16.dp))
-                                    Row(
-                                        modifier = Modifier.padding(16.dp),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Text(
-                                            text = promotion[index].functionKHR,
-                                            color = Color.White,
-                                            fontSize = 16.sp,
-                                            fontWeight = FontWeight.Light,
-                                        )
-                                        Spacer(modifier = Modifier.width(5.dp))
-                                        Text(".")
-                                        Spacer(modifier = Modifier.width(5.dp))
-                                        Text(
-                                            text = promotion[index].date,
-                                            color = Color.White,
-                                            fontSize = 16.sp,
-                                            fontWeight = FontWeight.Light,
-                                        )
-                                    }
-                                }
-
+                                    .padding(16.dp)
+                                    .weight(1f),
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
+                            Row(
+                                modifier = Modifier.padding(16.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = promotion[index].functionKHR,
+                                    color = Color.White,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Light,
+                                )
+                                Spacer(modifier = Modifier.width(5.dp))
+                                Text(".")
+                                Spacer(modifier = Modifier.width(5.dp))
+                                Text(
+                                    text = promotion[index].date,
+                                    color = Color.White,
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Light,
+                                )
                             }
-
-                            Spacer(modifier = Modifier.width(8.dp))
                         }
+
                     }
+
+                    Spacer(modifier = Modifier.width(8.dp))
                 }
             }
             Row(
@@ -572,7 +565,7 @@ fun HomeScreen(){
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .height(192.dp)
+                    .height(240.dp)
                     .background(
                         color = colorResource(R.color.white),
                         shape = RoundedCornerShape(20.dp),
@@ -581,7 +574,7 @@ fun HomeScreen(){
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(vertical = 4.dp)
+                        .padding(vertical = 0.dp)
                 ) {
                     // Item 1
                     Box(
@@ -590,7 +583,82 @@ fun HomeScreen(){
                             .weight(1f), // Takes 1/3 of the height
                         contentAlignment = Alignment.CenterStart
                     ) {
+                        Row() {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(70.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(52.dp)
+                                        .background(
+                                            color = colorResource(id = R.color.smoke_white),
+                                            shape = RoundedCornerShape(size = 16.dp)
+                                        ),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                    ) {
+                                        Text(
+                                            text = "Oct",
+                                            fontWeight = FontWeight.Normal,
+                                            fontSize = 16.sp
+                                        )
+                                        Text(
+                                            text = "20",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 20.sp
+                                        )
+                                    }
+                                }
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(8.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.Start
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.Start,
+                                    verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                ) {
+                                    Text(
+                                        text = "Rent",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp
+                                    )
+                                    Text(
+                                        text = "Standing order",
+                                        fontWeight = FontWeight.Normal,
+                                        fontSize = 16.sp
+                                    )
 
+                                }
+
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(100.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "-$350.00",
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            }
+
+                        }
                     }
 
                     HorizontalDivider(
@@ -607,7 +675,82 @@ fun HomeScreen(){
                             .weight(1f), // Takes 1/3 of the height
                         contentAlignment = Alignment.CenterStart
                     ) {
-                        // Put your Item 2 content here
+                        Row() {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(70.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(52.dp)
+                                        .background(
+                                            color = colorResource(id = R.color.smoke_white),
+                                            shape = RoundedCornerShape(size = 16.dp)
+                                        ),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                    ) {
+                                        Text(
+                                            text = "Oct",
+                                            fontWeight = FontWeight.Normal,
+                                            fontSize = 16.sp
+                                        )
+                                        Text(
+                                            text = "25",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 20.sp
+                                        )
+                                    }
+                                }
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(8.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.Start
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.Start,
+                                    verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                ) {
+                                    Text(
+                                        text = "Electricity bill",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp
+                                    )
+                                    Text(
+                                        text = "Auto pay",
+                                        fontWeight = FontWeight.Normal,
+                                        fontSize = 16.sp
+                                    )
+
+                                }
+
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(100.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "-៛1330.00",
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            }
+
+                        }
                     }
 
                     HorizontalDivider(
@@ -623,14 +766,167 @@ fun HomeScreen(){
                             .weight(1f), // Takes 1/3 of the height
                         contentAlignment = Alignment.CenterStart
                     ) {
-                        // Put your Item 3 content here
+                        Row() {
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(70.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .size(52.dp)
+                                        .background(
+                                            color = colorResource(id = R.color.smoke_white),
+                                            shape = RoundedCornerShape(size = 16.dp)
+                                        ),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                    ) {
+                                        Text(
+                                            text = "Nov",
+                                            fontWeight = FontWeight.Normal,
+                                            fontSize = 16.sp
+                                        )
+                                        Text(
+                                            text = "01",
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 20.sp
+                                        )
+                                    }
+                                }
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(8.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.Start
+                            ) {
+                                Column(
+                                    horizontalAlignment = Alignment.Start,
+                                    verticalArrangement = Arrangement.spacedBy(-5.dp)
+                                ) {
+                                    Text(
+                                        text = "Loan repayment",
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 18.sp
+                                    )
+                                    Text(
+                                        text = "Due in 16 days",
+                                        fontWeight = FontWeight.Normal,
+                                        fontSize = 16.sp
+                                    )
+
+                                }
+
+                            }
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxHeight()
+                                    .width(100.dp),
+                                verticalArrangement = Arrangement.Center,
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "-$350.00",
+                                    color = Color.Black,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            }
+
+                        }
                     }
                 }
             }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(32.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Promotions",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "ប្រម៉ូលសិន",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Light,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "See All",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Blue
+                )
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .height(120.dp)
+                    .background(
+                        color = colorResource(R.color.white),
+                        shape = RoundedCornerShape(16.dp)
+                    ),
+            )
+            {
+                Row(
+                    modifier = Modifier,
 
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    for (i in 1..4) {
+                        Column(
+                            modifier = Modifier.fillMaxWidth()
+                                .padding(16.dp)
+                                .weight(1f),
+                            verticalArrangement = Arrangement.SpaceBetween,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(58.dp)
+                                    .background(
+                                        color = colorResource(R.color.blue_200), // Calls the color from the current list item
+                                        shape = RoundedCornerShape(100)
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
 
+                                Icon(
+                                    modifier = Modifier.size(32.dp),
+                                    painter = painterResource(R.drawable.top_up),
+                                    contentDescription = null
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(2.dp))
+                            Text(
+                                modifier = Modifier.padding(top = 6.dp),
+                                text = "hello",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp,
+                                maxLines = 1
+                            )
+                        }
+                    }
+
+                }
+            }
         }
-
     }
 
 }
@@ -638,7 +934,7 @@ fun HomeScreen(){
 
 
 
-@Preview(showBackground = true, heightDp = 1200) // Giving it a fixed phone height helps the preview render scrollable content
+@Preview(showBackground = true, heightDp = 2000) // Giving it a fixed phone height helps the preview render scrollable content
 @Composable
 fun HomeScreenPreview() {
     BasicAndroidApplicationTheme { // Or whatever your app theme is called
