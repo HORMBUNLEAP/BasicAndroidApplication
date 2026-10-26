@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -44,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leap.basicApp.R
 import com.leap.basicApp.model.DashboardModel
+import com.leap.basicApp.model.Favorites
 import com.leap.basicApp.model.PromotionModel
 import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
 
@@ -124,6 +124,29 @@ fun HomeScreen(){
         )
 
     )
+    val fav = arrayListOf<Favorites>(
+        Favorites(
+            name = "Mom",
+            nameLabel = "MK",
+            colorBackground = R.color.black_zin
+        ),
+        Favorites(
+            name = "Sophea",
+            nameLabel = "SP",
+            colorBackground = R.color.teal_200
+        ),
+        Favorites(
+            name = "Landlord",
+            nameLabel = "LD",
+            colorBackground = R.color.gray
+        ),
+        Favorites(
+            name = "Electric",
+            nameLabel = "EC",
+            colorBackground = R.color.gray
+        )
+    )
+
 
     Scaffold(
         topBar = {
@@ -417,7 +440,9 @@ fun HomeScreen(){
                                                 color = colorResource(R.color.blue_200), // Calls the color from the current list item
                                                 shape = RoundedCornerShape(16.dp)
                                             ),
-                                        contentAlignment = Alignment.Center
+                                        contentAlignment = Alignment.Center,
+
+
                                     ) {
 
                                         Icon(
@@ -853,14 +878,14 @@ fun HomeScreen(){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Promotions",
+                    text = "Favorites",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "ប្រម៉ូលសិន",
+                    text = "ចំណូលចិត្ត",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Light,
                     color = Color.Gray
@@ -885,46 +910,73 @@ fun HomeScreen(){
             )
             {
                 Row(
-                    modifier = Modifier,
-
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    for (i in 1..4) {
+                    fav.forEach { item ->
                         Column(
-                            modifier = Modifier.fillMaxWidth()
-                                .padding(16.dp)
-                                .weight(1f),
-                            verticalArrangement = Arrangement.SpaceBetween,
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
                         ) {
                             Box(
                                 modifier = Modifier
                                     .size(58.dp)
                                     .background(
-                                        color = colorResource(R.color.blue_200), // Calls the color from the current list item
-                                        shape = RoundedCornerShape(100)
+                                        color = colorResource(id = item.colorBackground),
+                                        shape = RoundedCornerShape(50.dp)
                                     ),
                                 contentAlignment = Alignment.Center
                             ) {
-
-                                Icon(
-                                    modifier = Modifier.size(32.dp),
-                                    painter = painterResource(R.drawable.top_up),
-                                    contentDescription = null
+                                Text(
+                                    text = item.nameLabel,
+                                    color = Color.White,
+                                    fontSize = 21.sp,
+                                    fontWeight = FontWeight.Bold
                                 )
                             }
-                            Spacer(modifier = Modifier.height(2.dp))
+
+                            Spacer(modifier = Modifier.height(6.dp))
+
                             Text(
-                                modifier = Modifier.padding(top = 6.dp),
-                                text = "hello",
-                                fontWeight = FontWeight.Bold,
+                                text = item.name,
+                                fontWeight = FontWeight.Normal,
                                 fontSize = 12.sp,
                                 maxLines = 1
                             )
                         }
                     }
-
                 }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .height(32.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "Favorites",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(
+                    text = "ចំណូលចិត្ត",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Light,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.weight(1f))
+                Text(
+                    text = "See All",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Blue
+                )
             }
         }
     }

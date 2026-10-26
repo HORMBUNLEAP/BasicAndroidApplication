@@ -19,3 +19,9 @@ data class PromotionModel(
     val date : String,
     val colorRes: Int
 )
+
+data class Favorites(
+    val name: String,
+    val nameLabel: String,
+    val colorBackground: Int
+)
