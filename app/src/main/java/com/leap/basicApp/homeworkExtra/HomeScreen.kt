@@ -25,6 +25,7 @@ import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -44,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import com.leap.basicApp.R
 import com.leap.basicApp.model.DashboardModel
 import com.leap.basicApp.model.Favorites
+import com.leap.basicApp.model.MiniApp
 import com.leap.basicApp.model.PromotionModel
 import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
 
@@ -146,6 +148,29 @@ fun HomeScreen(){
             colorBackground = R.color.gray
         )
     )
+    val miniApp = arrayListOf<MiniApp>(
+        MiniApp(
+            name = "Ride",
+            Icon = R.drawable.ride,
+            colorBackground = R.color.teal_200
+        ),
+        MiniApp(
+            name = "Food",
+            Icon = R.drawable.food,
+            colorBackground = R.color.teal_200
+        ),
+        MiniApp(
+            name = "Tickets",
+            Icon = R.drawable.tickets,
+            colorBackground = R.color.teal_200
+        ),
+        MiniApp(
+            name = "Insurance",
+            Icon = R.drawable.insurance,
+            colorBackground = R.color.teal_200
+        )
+
+    )
 
 
     Scaffold(
@@ -201,7 +226,7 @@ fun HomeScreen(){
         Column(
             modifier = Modifier
                 .padding(it)
-                .fillMaxSize()
+                .fillMaxWidth()
                 .verticalScroll(state = scrollState)
                 .background(color = colorResource(R.color.smoke_white)),
             verticalArrangement = Arrangement.Top,
@@ -213,6 +238,7 @@ fun HomeScreen(){
                     .fillMaxWidth()
                     .height(60.dp)
                     .padding(16.dp, 5.dp),
+                verticalArrangement = Arrangement.Center
             ) {
                 Row(
                     modifier = Modifier
@@ -237,7 +263,7 @@ fun HomeScreen(){
                     }
                     Spacer(modifier = Modifier.width(12.dp))
                     Column(
-                        modifier = Modifier.width(240.dp)
+                        modifier = Modifier.weight(1f)
                     ) {
                         Text(
                             "សួស្តី · Good morning",
@@ -251,18 +277,26 @@ fun HomeScreen(){
                             color = Color(0xFF0F172A)
                         )
                     }
-                    FilledIconButton(
+
+                    IconButton(
+                        modifier = Modifier.size(42.dp)
+                            .background(
+                                color = Color.Blue,
+                                shape = CircleShape
+                            ),
+                        colors = IconButtonDefaults.iconButtonColors(
+                            containerColor = Color.Blue,
+                            contentColor = Color.White
+
+                            ),
                         onClick = {}
                     ) {
-                        IconButton(
-                            onClick = {}
-                        ) {
-                            Icon(
-                                painter = painterResource(R.drawable.outline_notifications),
-                                contentDescription = ""
-                            )
-                        }
+                        Icon(
+                            painter = painterResource(R.drawable.outline_notifications),
+                            contentDescription = ""
+                        )
                     }
+
                 }
             }
             Box(
@@ -892,7 +926,7 @@ fun HomeScreen(){
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "See All",
+                    text = "Edit",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Blue
@@ -958,26 +992,80 @@ fun HomeScreen(){
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Favorites",
+                    text = "Mini App",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
-                    text = "ចំណូលចិត្ត",
+                    text = "កម្មវិធីតូច",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Light,
                     color = Color.Gray
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Text(
-                    text = "See All",
+                    text = "Explore",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Blue
                 )
             }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+                    .height(120.dp)
+                    .background(
+                        color = colorResource(R.color.white),
+                        shape = RoundedCornerShape(16.dp)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    miniApp.forEach { item ->
+                        Column(
+                            modifier = Modifier.weight(1f),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .size(58.dp)
+                                    .background(
+                                        color = colorResource(id = item.colorBackground), // Directly use the Color object
+                                        shape = RoundedCornerShape(16.dp)
+                                    ),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    painter = painterResource(id = item.Icon),
+                                    contentDescription = item.name,
+                                    tint = Color.White
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.height(6.dp))
+
+                            Text(
+                                text = item.name,
+                                fontWeight = FontWeight.Normal,
+                                fontSize = 12.sp,
+                                maxLines = 1
+                            )
+                        }
+                    }
+                }
+
+            }
+
         }
     }
 

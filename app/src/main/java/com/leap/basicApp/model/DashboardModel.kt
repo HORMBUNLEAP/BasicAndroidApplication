@@ -25,3 +25,8 @@ data class Favorites(
     val nameLabel: String,
     val colorBackground: Int
 )
+data class MiniApp(
+    val name: String,
+    val Icon: Int,
+    val colorBackground: Int
+)
