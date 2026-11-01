@@ -26,11 +26,14 @@ import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
 import com.leap.basicApp.util.AppNavigation
 import com.leap.basicApp.util.LoadingContent
 import com.leap.basicApp.util.LoadingUtil
+import java.time.LocalDateTime
 
 class MainActivity : ComponentActivity() {
+    private val currentDateTime = LocalDateTime.now()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        println("====> MainActivity onCreate")
+        println("====> MainActivity onCreate $currentDateTime")
         enableEdgeToEdge()
         setContent {
             AppNavigation()
@@ -42,18 +45,27 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
+        println("====> MainActivity onStart")
     }
 
     override fun onPause() {
         super.onPause()
+        println("====> MainActivity onPause")
     }
 
     override fun onResume() {
         super.onResume()
+        println("====> MainActivity onResume")
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        println("====> MainActivity onDestroy $currentDateTime")
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        println("===> Leave Hint")
     }
 }
 

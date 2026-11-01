@@ -132,7 +132,7 @@ fun ScreenABA(){
                                 fontSize = 12.sp
                             )
                         },
-                        shape = RoundedCornerShape(8.dp),
+                        shape = SegmentedButtonDefaults.itemShape(index = index, count = option.size),
                         colors = SegmentedButtonDefaults.colors(
                             activeBorderColor = MaterialTheme.colorScheme.primary,
                             inactiveBorderColor = MaterialTheme.colorScheme.error
@@ -171,14 +171,12 @@ fun ScreenABA(){
                                     contentScale = ContentScale.Crop
                                 )
 
-                                foods.forEach { index ->
-                                    Text(
-                                        text = index.description,
-                                        color = MaterialTheme.colorScheme.error,
-                                        fontSize = 8.sp,
-                                        modifier = Modifier.padding(16.dp)
-                                    )
-                                }
+                                Text(
+                                    text = foods[index].description,
+                                    color = Color.White,
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(16.dp)
+                                )
 
                             }
                             Spacer(modifier = Modifier.height(8.dp))

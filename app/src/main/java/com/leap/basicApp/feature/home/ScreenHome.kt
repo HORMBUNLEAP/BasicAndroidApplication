@@ -40,7 +40,8 @@ import com.leap.basicApp.util.LoadingUtil
 @Composable
 fun ScreenHome(
     homeVM: HomeVM = HomeVM(),
-    onClickItem: (Any) -> Unit = {}
+    onClickItem: (Any) -> Unit = {},
+    onClickProfile: (id : Int) -> Unit
 ){
     val lifecycleOwner = LocalLifecycleOwner.current
     val componentList by homeVM.componentList.collectAsStateWithLifecycle()
@@ -102,10 +103,12 @@ fun ScreenHome(
              TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {}
+                        onClick = {
+                            onClickProfile(1)
+                        }
                     ) {
                         Icon(
-                            painter = painterResource(R.drawable.ic_home),
+                            painter = painterResource(R.drawable.ic_profile),
                             contentDescription = null
                         )
                     }
@@ -175,5 +178,8 @@ fun ScreenHome(
 @Preview(showBackground = true)
 @Composable
 fun ScreenHomePreview(){
-    ScreenHome()
+    ScreenHome(
+        onClickItem = {},
+        onClickProfile = {}
+    )
 }
