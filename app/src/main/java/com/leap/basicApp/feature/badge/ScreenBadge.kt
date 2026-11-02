@@ -34,7 +34,7 @@ import com.leap.basicApp.util.LoadingUtil
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ScreenBadge(
+fun ScreenBadge01(
     badgeViewModel: BadgeViewModel = BadgeViewModel(),
     onBack: () -> Unit = {}
 ){
@@ -172,5 +172,5 @@ fun ScreenBadge(
 @Composable
 
 fun ScreenBadgePreview(){
-    ScreenBadge()
+    ScreenBadge01()
 }

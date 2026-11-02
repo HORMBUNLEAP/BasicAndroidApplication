@@ -15,6 +15,7 @@ class UserVM(
     val userUiState = _userUiState.asStateFlow()
 
 
+
     fun getUserDetail(id: Int){
         viewModelScope.launch {
             _userUiState.emit(BaseUiState.Loading)

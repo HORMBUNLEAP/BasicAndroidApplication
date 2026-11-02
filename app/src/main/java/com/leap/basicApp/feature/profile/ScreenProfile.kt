@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.leap.basicApp.R
 import com.leap.basicApp.model.BaseUiState
 import com.leap.basicApp.util.LoadingUtil
@@ -29,7 +30,7 @@ import com.leap.basicApp.util.LoadingUtil
 @Composable
 fun ScreenProfile(
     id: String,
-    userVM: UserVM = UserVM(),
+    userVM: UserVM = viewModel(),
     onBack: () -> Unit
 ){
     val userUiState by userVM.userUiState.collectAsStateWithLifecycle()
