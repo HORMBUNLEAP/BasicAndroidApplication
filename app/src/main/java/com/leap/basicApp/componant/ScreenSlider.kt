@@ -71,7 +71,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.leap.basicApp.ui.font.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

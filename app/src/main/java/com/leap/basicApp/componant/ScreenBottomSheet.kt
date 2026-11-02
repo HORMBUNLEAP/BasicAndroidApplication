@@ -1,7 +1,4 @@
 package com.leap.basicApp.componant
-
-import android.widget.CheckBox
-import android.widget.RadioButton
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -65,7 +62,6 @@ import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.leap.basicApp.ui.font.fontFamily
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -160,9 +156,6 @@ fun ScreenBottomSheet() {
 fun bottomSheet(onDismissRequest: ()-> Unit,
                 onConfirm: (sugar: OptionalModel,
                             size : OptionalModel) -> Unit){
-    val  sheetState = rememberModalBottomSheetState (
-        skipPartiallyExpanded = true
-    )
     val sheetstate = rememberModalBottomSheetState(
         skipPartiallyExpanded = true
     )

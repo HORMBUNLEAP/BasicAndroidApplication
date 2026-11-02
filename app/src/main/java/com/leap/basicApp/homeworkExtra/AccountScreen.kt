@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -40,7 +41,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.leap.basicApp.R
-import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -274,6 +274,21 @@ fun AccountScreen(){
                                 }
                             }
                         }
+                        Column(
+                            modifier = Modifier.fillMaxSize(),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.Start,
+                        ) {
+                            Text(
+                                text = "Converted at $1 = ៛4,000 (Sample Rate)"
+                                ,
+                                color = colorResource(R.color.red),
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Medium
+
+                            )
+                        }
+
 
                     }
                 }
@@ -291,7 +306,5 @@ fun AccountScreen(){
 @Preview(showBackground = true, heightDp = 1000) // Giving it a fixed phone height helps the preview render scrollable content
 @Composable
 fun AccountScreenPreview() {
-    BasicAndroidApplicationTheme { // Or whatever your app theme is called
-        AccountScreen()
-    }
+    AccountScreen()
 }
