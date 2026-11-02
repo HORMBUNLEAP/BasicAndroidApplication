@@ -7,7 +7,7 @@ import androidx.compose.runtime.remember
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.ui.NavDisplay
 import com.leap.basicApp.feature.badge.ScreenBadge01
-import com.leap.basicApp.feature.home.ScreenHome
+import com.leap.basicApp.feature.home.ScreenHome01
 import com.leap.basicApp.feature.profile.ScreenProfile
 import kotlinx.serialization.Serializable
 
@@ -30,7 +30,7 @@ fun AppNavigation(){
         entryProvider = { key ->
             when (key) {
                 is HomeScreen -> NavEntry(key) {
-                    ScreenHome(
+                    ScreenHome01(
                         onClickItem = { route ->
                             backStack.add(route)
                         },

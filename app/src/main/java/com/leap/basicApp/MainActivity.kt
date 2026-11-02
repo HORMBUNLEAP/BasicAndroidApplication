@@ -11,18 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.leap.basicApp.componant.ScreenBottomSheet
-import com.leap.basicApp.componant.ScreenCheckBox
-import com.leap.basicApp.componant.ScreenFillButton
-import com.leap.basicApp.componant.ScreenIconButton
-import com.leap.basicApp.componant.ScreenLoadingAndProgress
-import com.leap.basicApp.componant.ScreenToolTip
-import com.leap.basicApp.feature.home.ScreenHome
-import com.leap.basicApp.screen.ScreenHorizontalPager
-import com.leap.basicApp.screen.ScreenLazyHorizontalGird
-import com.leap.basicApp.screen.ScreenLazyRowPreviewP2
-import com.leap.basicApp.screen.ScreenLazyVerticalGrid
-import com.leap.basicApp.ui.theme.BasicAndroidApplicationTheme
+
 import com.leap.basicApp.util.AppNavigation
 import com.leap.basicApp.util.LoadingContent
 import com.leap.basicApp.util.LoadingUtil
@@ -83,4 +72,9 @@ fun GreetingPreview() {
     BasicAndroidApplicationTheme {
         Greeting("Android")
     }
+}
+
+@Composable
+fun BasicAndroidApplicationTheme(content: @Composable () -> Unit) {
+    TODO("Not yet implemented")
 }

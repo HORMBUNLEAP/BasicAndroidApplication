@@ -8,13 +8,18 @@ import kotlinx.coroutines.flow.flow
 import kotlin.time.Duration.Companion.milliseconds
 
 class HomeRepository {
-    val componentList = listOf(
-        ComponentModel(id = 1, title = "Badge", description = "Click here to see abdge", route = BadgeScreen)
-
+    private val componentList = listOf(
+        ComponentModel(
+            id = 1,
+            title = "Badge",
+            description = "Click here to see badge",
+            route = BadgeScreen
+        )
     )
-    suspend fun GetComponentList(): Flow<List<ComponentModel>>{
-        delay(2000.milliseconds)
-        return  flow{
+
+    suspend fun GetComponentList(): Flow<List<ComponentModel>> {
+        delay(2000.milliseconds) // Simulating network or database delay
+        return flow {
             emit(componentList)
         }
     }
